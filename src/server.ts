@@ -2,28 +2,36 @@
 //npm install express
 //npm install @types/express
 
-import express from 'express'
-import {Server} from 'http' 
+import express, { Router } from 'express'
+import {Server} from 'http'
+
+//importando as rotas 
+import mainRoutes from './routes/index'
+
+import path from 'path'
+
+import mustache from 'mustache-express'
 
 //Usar a biblioteca express
 const server = express()
 
-server.get('/',(req,res) =>{res.send("Olá mundo!")})
+server.set('view engine','mustache')
 
-//Rota estatica
-server.get('/cadastro',(req,res) =>{res.send("Cadastro")})
+//usando as rotas
+server.use(mainRoutes)
 
-//Rota dinamica
-server.get('/noticia/:slug',(req,res) =>{
-    let slug: string = req.params.slug
-    res.send(`Notícia: ${slug}`)
-})
+//Criando rota p/ pasta public
+server.use(express.static(path.join(__dirname,'../public')))
 
-server.get('/voo/:origem-:destino',(req,res) =>{
-    let {origem, destino} = req.params
-    res.send(`Procurando voos de ${origem} até ${destino}`)
+//Rota p/ pasta views
+server.set('views',path.join(__dirname,'views'))
+server.engine('mustache', mustache())
+
+server.use((req,res) =>{
+    res.status(404).send("Página não encontrada :(")
 })
 
 //Gerando o servidor na porta 3000
 server.listen(3000)
+
 
