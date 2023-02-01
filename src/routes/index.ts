@@ -10,13 +10,13 @@ router.get('/',(req: Request,res: Response) =>{
     //     idade: 10
     // }
 
-    res.render('home',{
+    res.render('pages/home',{
         nome: "Fulaninho",
         showWelcome: true
     })
 })
 
-router.get('/contato',(req:Request, res: Response) => {res.render('contato')})
+router.get('/contato',(req:Request, res: Response) => {res.render('pages/contato')})
 
 router.get('/idade',(req: Request,res: Response) => {
     //se for maior de 18 exibe a mensagem
@@ -28,15 +28,16 @@ router.get('/idade',(req: Request,res: Response) => {
     if (idade >= 18){
         mostrarIdade = true
     }
-    res.render('idade',{
+    res.render('pages/idade',{
         nome: "Ciclano",
         mostrarIdade,
         products:[
-            'Mouse',
+           /*'Mouse',
             'Leite em pó',
             'Desodorante',
             'Lustra móveis',
-            'Sabão em pó'
+            'Sabão em pó' */
+
         ]
     })
 })
