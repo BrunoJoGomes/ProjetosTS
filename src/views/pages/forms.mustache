@@ -1,0 +1,30 @@
+{{>partials/header}}
+
+<h2>Cadastro</h2>
+<form method="GET">
+    <p>Digite seu nome:</p>
+    <input type="text" name="nome">
+
+    <p>Digite sua idade:</p>
+    <input type="number" name="idade">
+
+    <p>Digite seu telefone:</p>
+    <input type="number" name="telefone">
+
+    <p>Digite seu endereço:</p>
+    <input type="text" name="endereco">
+
+    <p><input type="submit" value="Enviar"></p>
+</form>
+
+{{#nome}}
+<p>Olá, seu nome é {{nome}};</p>
+
+Sua idade é {{idade}};
+
+<p>Seu telefone é {{telefone}};</p>
+
+Seu endereço é {{endereco}}.
+{{/nome}}
+
+{{>partials/footer}}

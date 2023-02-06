@@ -56,8 +56,34 @@ router.get('/voo/:origem-:destino',(req: Request,res: Response) =>{
     res.send(`Procurando voos de ${origem} até ${destino}`)
 })
 
+router.get('/nome',(req: Request,res: Response) => {
+    let nome: string = req.query.nome as string   
+    res.render('pages/nome',{
+        nome
+    })
+})
+
+router.get('/forms',(req: Request,res: Response) => {
+    let nome: string = req.query.nome as string 
+    let idade: number = req.query.idade as unknown as number
+    let telefone: number = req.query.telefone as unknown as number
+    let endereco: string = req.query.endereco as string 
+    res.render('pages/forms',{nome, idade, telefone, endereco})
+})
+
+router.get('/nascimento',(req: Request,res: Response) => {res.render("pages/nascimento")})
+
+router.post('/nascimento',(req: Request,res: Response) =>{
+    let ano: number = req.body.ano as unknown as number
+
+    let idade: number = (2023 - ano)
+
+    res.render('pages/nascimento',{idade, ano})
+})
+
+
 //Método get: só acessar a pagina, fica exposto no cabeçalho da requisição (urn)
-//Método post 
+//Método post: encapsula os dados e nao aparece na urn
 
 //exportando a variavel router 
 export default router

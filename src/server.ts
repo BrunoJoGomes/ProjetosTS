@@ -23,6 +23,9 @@ server.use(mainRoutes)
 //Criando rota p/ pasta public
 server.use(express.static(path.join(__dirname,'../public')))
 
+//utilizando método post
+server.use(express.urlencoded({extended:true}))
+
 //Rota p/ pasta views
 server.set('views',path.join(__dirname,'views'))
 server.engine('mustache', mustache())
