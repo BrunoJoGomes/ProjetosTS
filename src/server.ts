@@ -12,6 +12,10 @@ import path from 'path'
 
 import mustache from 'mustache-express'
 
+import dotenv from 'dotenv'
+
+dotenv.config()
+
 //Usar a biblioteca express
 const server = express()
 
@@ -34,7 +38,9 @@ server.use((req,res) =>{
     res.status(404).send("Página não encontrada :(")
 })
 
-//Gerando o servidor na porta 3000
-server.listen(3000)
+//gerando servidor na porta 300
+server.listen(process.env.PORT)
+
+
 
 
